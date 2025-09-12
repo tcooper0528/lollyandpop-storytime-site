@@ -84,84 +84,8 @@ export default function PopPopStorytimeSite() {
                 Set sail on <span className="text-indigo-600">enchanted stories</span> with PopPop!
               </h1>
               <p className="mt-4 max-w-prose text-lg text-slate-700">
-                PopPop the Pirate‑Grandpa leads families on whimsical journeys filled with treasure maps, rocketships, and laughter. Classic storytime magic — with Pixar‑style wonder!
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button size="lg" className="rounded-2xl" asChild>
-                  <a href="#stories"><PlayCircle className="mr-2 h-5 w-5" /> Watch a Story</a>
-                </Button>
-                <Button size="lg" variant="outline" className="rounded-2xl" asChild>
-                  <a href="#storybot"><Bot className="mr-2 h-5 w-5" /> Try Storybot</a>
-                </Button>
-              </div>
-              <div className="mt-6 flex items-center gap-4 text-sm text-slate-600">
-                <div className="flex items-center gap-1"><Star className="h-4 w-4" /> kid‑approved</div>
-                <div className="flex items-center gap-1"><Heart className="h-4 w-4" /> grandparent‑powered</div>
-                <div className="flex items-center gap-1"><BookOpen className="h-4 w-4" /> read‑along friendly</div>
-              </div>
-            </motion.div>
-          </div>
-          <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-indigo-200/60 via-amber-200/40 to-pink-200/40 blur-2xl" />
-              <div className="relative overflow-hidden rounded-[2rem] border bg-white shadow-xl">
-                <img
-                  src={AVATAR_URL}
-                  alt="PopPop Pirate Avatar"
-                  className="aspect-[4/3] w-full object-contain p-6"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </Section>
 
-      {/* STORYBOT (updated with avatar) */}
-      <Section id="storybot" className="bg-white/60">
-        <div className="grid gap-10 md:grid-cols-2 items-center">
-          <div>
-            <h2 className="text-3xl font-bold flex items-center gap-2"><Bot className="h-6 w-6" /> Storytime Storybot</h2>
-            <p className="mt-3 text-slate-700">
-              With PopPop’s enchanted compass and treasure map, the Storytime Storybot transforms your child’s details into a magical picture‑book journey. Classic storytime meets Pixar‑style wonder.
-            </p>
-            <ul className="mt-4 list-disc pl-6 text-slate-700">
-              <li>Simple form: name, age, favorites, special places</li>
-              <li>PopPop’s Global Consistency for character & art style</li>
-              <li>Private review link before anything goes public</li>
-            </ul>
-            <div className="mt-6 flex gap-3">
-              <Button size="lg" asChild>
-                <a href="/storybot" aria-label="Open the Storytime Storybot">Open Storybot</a>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href="#how">See how it works</a>
-              </Button>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-amber-100/70 to-pink-100/70 blur-xl" />
-            <Card className="relative overflow-hidden border bg-white shadow-lg">
-              <CardHeader>
-                <CardTitle>PopPop by your side</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <img
-                  src={AVATAR_URL}
-                  alt="PopPop Pirate Avatar next to Storybot"
-                  className="mx-auto max-h-72 object-contain"
-                  loading="lazy"
-                />
-                <p className="mt-3 text-slate-600 text-center text-sm">
-                  PopPop guides you as you fill out the Storybot form — map and compass in hand!
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </Section>
-
-      {/* Other sections unchanged (About, Stories, Values, How, FAQ, Testimonials, Newsletter, Contact) */}
-    </div>
-  );
-}
+- import { Button } from "@/components/ui/button";
+- import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
++ import { Button } from "./components/ui/button";
++ import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
