@@ -1,17 +1,11 @@
+// src/PopPopStorytimeSite.tsx
 import React, { PropsWithChildren } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, BookOpen, Bot, Rocket, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import avatarUrl from "@/assets/poppop-avatar.png";
+import avatarUrl from "@/assets/poppop-avatar.png"; // <-- bundled image
 
-const AVATAR_URL = "/images/poppop-avatar.png";
-
-<img src={avatarUrl} alt="PopPop avatar" className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200" />
-
-
-
-/** Simple wrapper for consistent section spacing */
 function Section({
   id,
   className = "",
@@ -73,7 +67,7 @@ export default function PopPopStorytimeSite() {
           <div className="relative">
             <div className="absolute inset-0 -z-10 rounded-3xl blur-2xl bg-gradient-to-tr from-indigo-200/60 via-amber-200/40 to-pink-200/40" />
             <img
-              src={AVATAR_URL}
+              src={avatarUrl}
               alt="PopPop avatar"
               className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200"
               loading="lazy"
@@ -91,7 +85,7 @@ export default function PopPopStorytimeSite() {
               PopPop’s Storytime Bot
             </CardTitle>
           </CardHeader>
-          <CardContent>
+        <CardContent>
             <p className="text-slate-700 mb-4">
               Tell the Storybot a few details (kid’s name, favorite pet, a place to explore) and
               it’ll weave a gentle, values-forward bedtime adventure—voiced by PopPop.
@@ -155,4 +149,6 @@ export default function PopPopStorytimeSite() {
     </div>
   );
 }
+
+
 
