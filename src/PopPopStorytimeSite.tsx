@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Sparkles, BookOpen, Bot, Rocket, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import avatarUrl from "@/assets/poppop-avatar.png"; // <-- bundled image
+import avatarUrl from "@/assets/poppop-avatar.png"; // bundled image via Vite
 
 function Section({
   id,
@@ -76,7 +76,7 @@ export default function PopPopStorytimeSite() {
         </div>
       </Section>
 
-      {/* STORYBOT */}
+      {/* STORYBOT (visible form) */}
       <Section id="storybot" className="py-12">
         <Card className="shadow-sm">
           <CardHeader>
@@ -85,28 +85,79 @@ export default function PopPopStorytimeSite() {
               PopPop’s Storytime Bot
             </CardTitle>
           </CardHeader>
-        <CardContent>
+          <CardContent>
             <p className="text-slate-700 mb-4">
               Tell the Storybot a few details (kid’s name, favorite pet, a place to explore) and
               it’ll weave a gentle, values-forward bedtime adventure—voiced by PopPop.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
+
+            {/* Netlify form (must match the hidden clone in index.html) */}
+            <form
+              name="storybot"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              action="/thanks"
+              className="grid md:grid-cols-2 gap-6"
+            >
+              {/* Required hidden inputs */}
+              <input type="hidden" name="form-name" value="storybot" />
+              <p className="hidden">
+                <label>Don’t fill this out: <input name="bot-field" /></label>
+              </p>
+
               <div className="space-y-3">
-                <label className="block text-sm font-medium">Explorer’s name</label>
-                <input className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Xena" />
-                <label className="block text-sm font-medium">Sidekick</label>
-                <input className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Jazzy the pup" />
-                <label className="block text-sm font-medium">Magical destination</label>
-                <input className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Starry Seas" />
+                <label className="block text-sm font-medium" htmlFor="explorerName">Explorer’s name</label>
+                <input
+                  id="explorerName"
+                  name="explorerName"
+                  required
+                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
+                  placeholder="e.g., Xena"
+                />
+
+                <label className="block text-sm font-medium" htmlFor="sidekick">Sidekick</label>
+                <input
+                  id="sidekick"
+                  name="sidekick"
+                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
+                  placeholder="e.g., Jazzy the pup"
+                />
+
+                <label className="block text-sm font-medium" htmlFor="destination">Magical destination</label>
+                <input
+                  id="destination"
+                  name="destination"
+                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
+                  placeholder="e.g., Starry Seas"
+                />
+
+                <label className="block text-sm font-medium" htmlFor="parentEmail">Parent email (optional)</label>
+                <input
+                  id="parentEmail"
+                  name="parentEmail"
+                  type="email"
+                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
+                  placeholder="you@example.com"
+                />
+
+                <label className="block text-sm font-medium" htmlFor="notes">Any cozy notes</label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
+                  placeholder="Bedtime is 8pm; loves maps and stars."
+                />
               </div>
+
               <div className="flex flex-col justify-between">
                 <div className="flex items-center gap-2 text-slate-600">
                   <Rocket className="h-4 w-4" />
                   <span>Stories keep a classic, cozy tone.</span>
                 </div>
-                <Button className="mt-4 md:mt-0">Spin a Story</Button>
+                <Button type="submit" className="mt-4 md:mt-0">Spin a Story</Button>
               </div>
-            </div>
+            </form>
           </CardContent>
         </Card>
       </Section>
@@ -149,6 +200,4 @@ export default function PopPopStorytimeSite() {
     </div>
   );
 }
-
-
 
