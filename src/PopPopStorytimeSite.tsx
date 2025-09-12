@@ -89,5 +89,65 @@ export default function PopPopStorytimeSite() {
           <CardContent>
             <p className="text-slate-700 mb-4">
               Tell the Storybot a few details (kid’s name, favorite pet, a place to explore) and
-              it’ll weave a gent
+              it’ll weave a gentle, values-forward bedtime adventure—voiced by PopPop.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <label className="block text-sm font-medium">Explorer’s name</label>
+                <input className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Xena" />
+                <label className="block text-sm font-medium">Sidekick</label>
+                <input className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Jazzy the pup" />
+                <label className="block text-sm font-medium">Magical destination</label>
+                <input className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Starry Seas" />
+              </div>
+              <div className="flex flex-col justify-between">
+                <div className="flex items-center gap-2 text-slate-600">
+                  <Rocket className="h-4 w-4" />
+                  <span>Stories keep a classic, cozy tone.</span>
+                </div>
+                <Button className="mt-4 md:mt-0">Spin a Story</Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </Section>
+
+      {/* ABOUT */}
+      <Section id="about" className="py-12">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 text-indigo-700">
+              <BookOpen className="h-5 w-5" />
+              <span className="font-semibold">About PopPop</span>
+            </div>
+            <p className="mt-3 text-slate-700">
+              PopPop has a soft spot for timeless tales, gentle jokes, and family traditions.
+              Each story is crafted to be calm, kind, and a touch adventurous—perfect for winding down.
+            </p>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="rounded-2xl border bg-white p-6 text-slate-700"
+          >
+            <p>
+              “We mix classic values with a sprinkle of wonder—so little listeners feel brave,
+              safe, and ready for dreams.”
+            </p>
+          </motion.div>
+        </div>
+      </Section>
+
+      {/* FOOTER */}
+      <footer className="py-10 text-center text-sm text-slate-600">
+        <div className="flex items-center justify-center gap-2">
+          <Sparkles className="h-4 w-4" />
+          <span>© {new Date().getFullYear()} PopPop Storytime</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
 
