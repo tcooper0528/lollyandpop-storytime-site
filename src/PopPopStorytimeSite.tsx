@@ -6,6 +6,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const AVATAR_URL = "/images/poppop-avatar.png";
 
+<img
+  src={AVATAR_URL}
+  alt="PopPop avatar"
+  className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200"
+  loading="lazy"
+/>
+
+
 /** Simple wrapper for consistent section spacing */
 function Section({
   id,
