@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Sparkles, BookOpen, Bot, Rocket, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import avatarUrl from "@/assets/poppop-avatar.png"; // bundled image via Vite
+import avatarUrl from "@/assets/poppop-avatar.png";
 
 function Section({
   id,
@@ -91,16 +91,15 @@ export default function PopPopStorytimeSite() {
               it’ll weave a gentle, values-forward bedtime adventure—voiced by PopPop.
             </p>
 
-            {/* Netlify form (must match the hidden clone in index.html) */}
+            {/* Netlify form: posts to a static thank-you page */}
             <form
               name="storybot"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              action="/thanks"
+              action="/thanks.html"
               className="grid md:grid-cols-2 gap-6"
             >
-              {/* Required hidden inputs */}
               <input type="hidden" name="form-name" value="storybot" />
               <p className="hidden">
                 <label>Don’t fill this out: <input name="bot-field" /></label>
