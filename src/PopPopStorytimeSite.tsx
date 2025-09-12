@@ -1,50 +1,21 @@
-import React, { useState } from "react";
+import React, { PropsWithChildren } from "react";
 import { motion } from "framer-motion";
+import { Sparkles, BookOpen, Bot, Rocket, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Sparkles, Star, BookOpen, Bot, Baby, Dog, Mail, PlayCircle, Rocket, Heart, Menu, X, ShieldCheck, Lock, ThumbsUp } from "lucide-react";
 
-// PopPop avatar image (3D Pixar style)
-// TODO: replace with a public URL (e.g., /images/poppop-avatar.png) when deploying
 const AVATAR_URL = "/images/poppop-avatar.png";
 
-const Section = ({ id, children, className = "" }) => (
-  <section id={id} className={`py-16 md:py-24 ${className}`}>
-    <div className="mx-auto max-w-6xl px-4">{children}</div>
-  </section>
-);
-
-const Badge = ({ children }) => (
-  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium shadow-sm bg-amber-50">
-    <Sparkles className="h-4 w-4 text-amber-500" />
-    {children}
-  </span>
-);
-
-function MobileMenu() {
-  const [open, setOpen] = useState(false);
+/** Simple wrapper for consistent section spacing */
+function Section({
+  id,
+  className = "",
+  children,
+}: PropsWithChildren<{ id?: string; className?: string }>) {
   return (
-    <div className="md:hidden">
-      <Button size="icon" variant="outline" aria-label="Toggle navigation" onClick={() => setOpen(!open)}>
-        {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-      </Button>
-      {open && (
-        <div className="absolute left-0 right-0 top-[60px] border-b bg-white/90 backdrop-blur">
-          <nav className="mx-auto max-w-6xl px-4 py-4 grid gap-3 text-sm">
-            {["About", "Stories", "Storybot", "How it works", "Contact"].map((label) => (
-              <a key={label} href={`#${label.toLowerCase().replace(/ /g, "")}`} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                {label}
-              </a>
-            ))}
-            <Button asChild className="mt-2">
-              <a href="#storybot" onClick={() => setOpen(false)}>Try Storytime Storybot</a>
-            </Button>
-          </nav>
-        </div>
-      )}
-    </div>
+    <section id={id} className={`max-w-6xl mx-auto px-4 md:px-6 ${className}`}>
+      {children}
+    </section>
   );
 }
 
@@ -52,40 +23,71 @@ export default function PopPopStorytimeSite() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-amber-50 text-slate-900">
       {/* NAV */}
-      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-b">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <a href="#top" className="flex items-center gap-2 font-extrabold tracking-tight">
-            <span className="text-xl">🦜</span>
-            <span className="text-xl">PopPop Storytime</span>
-          </a>
-          <nav className="hidden gap-6 md:flex text-sm">
-            <a href="#about" className="hover:underline">About</a>
-            <a href="#stories" className="hover:underline">Stories</a>
-            <a href="#storybot" className="hover:underline">Storybot</a>
-            <a href="#how" className="hover:underline">How it works</a>
-            <a href="#contact" className="hover:underline">Contact</a>
-          </nav>
-          <div className="hidden md:block">
-            <Button size="sm" asChild>
-              <a href="#storybot">Try Storytime Storybot</a>
-            </Button>
+      <nav className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-6 w-6 text-indigo-600" />
+            <span className="font-semibold">PopPop Storytime</span>
           </div>
-          <MobileMenu />
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#adventure" className="hover:text-indigo-600">Adventure</a>
+            <a href="#storybot" className="hover:text-indigo-600">Storybot</a>
+            <a href="#about" className="hover:text-indigo-600">About</a>
+          </div>
         </div>
-      </header>
+      </nav>
 
       {/* HERO */}
-      <Section id="top" className="pb-8 pt-12 md:pt-16">
-        <div className="grid items-center gap-10 md:grid-cols-2">
+      <Section id="adventure" className="py-12 md:py-16">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <Badge>Magical adventures for little imaginations</Badge>
-              <h1 className="mt-4 text-4xl font-black leading-tight md:text-6xl">
-                Set sail on <span className="text-indigo-600">enchanted stories</span> with PopPop!
-              </h1>
-              <p className="mt-4 max-w-prose text-lg text-slate-700">
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl md:text-5xl font-extrabold tracking-tight"
+            >
+              Set sail for <span className="text-indigo-600">magical adventures</span> with PopPop.
+            </motion.h1>
+            <p className="mt-4 text-lg text-slate-700">
+              Climb aboard, matey! PopPop guides little explorers through glittering seas,
+              starry skies, and secret forests — with gentle humor, warm values, and Pixar-style charm.
+            </p>
+            <div className="mt-6 flex gap-3">
+              <Button className="shadow">Start Listening</Button>
+              <a href="#storybot">
+                <Button variant="outline">Try Storybot</Button>
+              </a>
+            </div>
+            <div className="mt-6 flex items-center gap-2 text-slate-600">
+              <Heart className="h-4 w-4" />
+              <span>Kid-safe • Grandparent-approved • 100% cozy</span>
+            </div>
+          </div>
 
-- import { Button } from "@/components/ui/button";
-- import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-+ import { Button } from "./components/ui/button";
-+ import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
+          <div className="relative">
+            <div className="absolute inset-0 -z-10 rounded-3xl blur-2xl bg-gradient-to-tr from-indigo-200/60 via-amber-200/40 to-pink-200/40" />
+            <img
+              src={AVATAR_URL}
+              alt="PopPop avatar"
+              className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </Section>
+
+      {/* STORYBOT */}
+      <Section id="storybot" className="py-12">
+        <Card className="shadow-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Bot className="h-5 w-5 text-indigo-600" />
+              PopPop’s Storytime Bot
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-slate-700 mb-4">
+              Tell the Storybot a few details (kid’s name, favorite pet, a place to explore) and
+              it’ll weave a gent
+
