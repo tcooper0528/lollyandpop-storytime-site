@@ -4,10 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>PopPop Storytime</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Hidden Netlify registration form (must exist at build time) -->
+    <form name="storybot"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/thanks"
+          hidden>
+      <input type="hidden" name="form-name" value="storybot" />
+      <p hidden>
+        <label>Don’t fill this out: <input name="bot-field" /></label>
+      </p>
+      <input type="text" name="explorerName" />
+      <input type="text" name="sidekick" />
+      <input type="text" name="destination" />
+      <input type="email" name="parentEmail" />
+      <textarea name="notes"></textarea>
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
