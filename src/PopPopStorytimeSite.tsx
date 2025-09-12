@@ -3,15 +3,12 @@ import { motion } from "framer-motion";
 import { Sparkles, BookOpen, Bot, Rocket, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import avatarUrl from "@/assets/poppop-avatar.png";
 
 const AVATAR_URL = "/images/poppop-avatar.png";
 
-<img
-  src={AVATAR_URL}
-  alt="PopPop avatar"
-  className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200"
-  loading="lazy"
-/>
+<img src={avatarUrl} alt="PopPop avatar" className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200" />
+
 
 
 /** Simple wrapper for consistent section spacing */
