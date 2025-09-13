@@ -1,5 +1,57 @@
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Custom animations & utilities ---------- */
+@layer utilities {
+  /* gentle bob for the avatar */
+  @keyframes float-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+  .animate-float-bob { animation: float-bob 4s ease-in-out infinite; }
+
+  /* tiny star twinkles in the hero background */
+  @keyframes twinkle {
+    0%, 100% { opacity: .2; transform: scale(1); }
+    50%      { opacity: 1;  transform: scale(1.15); }
+  }
+  .twinkle { animation: twinkle 2.6s ease-in-out infinite; }
+  .twinkle.delay-1 { animation-delay: .4s; }
+  .twinkle.delay-2 { animation-delay: .8s; }
+  .twinkle.delay-3 { animation-delay: 1.2s; }
+
+  /* parallax shimmer blob */
+  .shimmer-blob {
+    filter: blur(28px);
+    opacity: .6;
+  }
+
+  /* button glow */
+  .btn-glow {
+    box-shadow: 0 10px 20px rgba(79,70,229,.22), 0 4px 8px rgba(79,70,229,.18);
+  }
+  .btn-glow:hover {
+    box-shadow: 0 14px 28px rgba(79,70,229,.30), 0 10px 10px rgba(79,70,229,.22);
+  }
+
+  /* confetti */
+  @keyframes confetti-fall {
+    0%   { transform: translateY(-20vh) rotate(0deg);    opacity: 1; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity: 1; }
+  }
+  .confetti-piece {
+    position: fixed;
+    top: -10vh;
+    width: 8px; height: 14px;
+    will-change: transform;
+    animation: confetti-fall 1200ms ease-out forwards;
+    pointer-events: none;
+    z-index: 60;
+  }
+}
+
+/* Base layout balance */
 html, body, #root { height: 100%; }
+
