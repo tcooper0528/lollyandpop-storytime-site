@@ -40,12 +40,8 @@ export default function PopPopStorytimeSite() {
       <Section id="adventure" className="py-12 md:py-16">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl md:text-5xl font-extrabold tracking-tight"
-            >
+            <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+              className="text-3xl md:text-5xl font-extrabold tracking-tight">
               Set sail for <span className="text-indigo-600">magical adventures</span> with PopPop.
             </motion.h1>
             <p className="mt-4 text-lg text-slate-700">
@@ -54,35 +50,26 @@ export default function PopPopStorytimeSite() {
             </p>
             <div className="mt-6 flex gap-3">
               <Button className="shadow">Start Listening</Button>
-              <a href="#storybot">
-                <Button variant="outline">Try Storybot</Button>
-              </a>
+              <a href="#storybot"><Button variant="outline">Try Storybot</Button></a>
             </div>
             <div className="mt-6 flex items-center gap-2 text-slate-600">
-              <Heart className="h-4 w-4" />
-              <span>Kid-safe • Grandparent-approved • 100% cozy</span>
+              <Heart className="h-4 w-4" /><span>Kid-safe • Grandparent-approved • 100% cozy</span>
             </div>
           </div>
 
           <div className="relative">
             <div className="absolute inset-0 -z-10 rounded-3xl blur-2xl bg-gradient-to-tr from-indigo-200/60 via-amber-200/40 to-pink-200/40" />
-            <img
-              src={avatarUrl}
-              alt="PopPop avatar"
-              className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200"
-              loading="lazy"
-            />
+            <img src={avatarUrl} alt="PopPop avatar" className="w-full aspect-square object-cover rounded-3xl ring-4 ring-amber-200" loading="lazy" />
           </div>
         </div>
       </Section>
 
-      {/* STORYBOT (visible form) */}
+      {/* STORYBOT (visible form → posts to /thanks) */}
       <Section id="storybot" className="py-12">
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Bot className="h-5 w-5 text-indigo-600" />
-              PopPop’s Storytime Bot
+              <Bot className="h-5 w-5 text-indigo-600" /> PopPop’s Storytime Bot
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -91,68 +78,37 @@ export default function PopPopStorytimeSite() {
               it’ll weave a gentle, values-forward bedtime adventure—voiced by PopPop.
             </p>
 
-            {/* Netlify form: posts to a static thank-you page */}
             <form
               name="storybot"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              action="/thanks.html"
+              action="/thanks"
               className="grid md:grid-cols-2 gap-6"
             >
               <input type="hidden" name="form-name" value="storybot" />
-              <p className="hidden">
-                <label>Don’t fill this out: <input name="bot-field" /></label>
-              </p>
+              <p className="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
               <div className="space-y-3">
                 <label className="block text-sm font-medium" htmlFor="explorerName">Explorer’s name</label>
-                <input
-                  id="explorerName"
-                  name="explorerName"
-                  required
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="e.g., Xena"
-                />
+                <input id="explorerName" name="explorerName" required className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Xena" />
 
                 <label className="block text-sm font-medium" htmlFor="sidekick">Sidekick</label>
-                <input
-                  id="sidekick"
-                  name="sidekick"
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="e.g., Jazzy the pup"
-                />
+                <input id="sidekick" name="sidekick" className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Jazzy the pup" />
 
                 <label className="block text-sm font-medium" htmlFor="destination">Magical destination</label>
-                <input
-                  id="destination"
-                  name="destination"
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="e.g., Starry Seas"
-                />
+                <input id="destination" name="destination" className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Starry Seas" />
 
                 <label className="block text-sm font-medium" htmlFor="parentEmail">Parent email (optional)</label>
-                <input
-                  id="parentEmail"
-                  name="parentEmail"
-                  type="email"
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="you@example.com"
-                />
+                <input id="parentEmail" name="parentEmail" type="email" className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="you@example.com" />
 
                 <label className="block text-sm font-medium" htmlFor="notes">Any cozy notes</label>
-                <textarea
-                  id="notes"
-                  name="notes"
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
-                  placeholder="Bedtime is 8pm; loves maps and stars."
-                />
+                <textarea id="notes" name="notes" className="w-full rounded-lg border border-slate-300 px-3 py-2" placeholder="Bedtime is 8pm; loves maps and stars." />
               </div>
 
               <div className="flex flex-col justify-between">
                 <div className="flex items-center gap-2 text-slate-600">
-                  <Rocket className="h-4 w-4" />
-                  <span>Stories keep a classic, cozy tone.</span>
+                  <Rocket className="h-4 w-4" /><span>Stories keep a classic, cozy tone.</span>
                 </div>
                 <Button type="submit" className="mt-4 md:mt-0">Spin a Story</Button>
               </div>
@@ -166,25 +122,16 @@ export default function PopPopStorytimeSite() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <div className="inline-flex items-center gap-2 text-indigo-700">
-              <BookOpen className="h-5 w-5" />
-              <span className="font-semibold">About PopPop</span>
+              <BookOpen className="h-5 w-5" /><span className="font-semibold">About PopPop</span>
             </div>
             <p className="mt-3 text-slate-700">
               PopPop has a soft spot for timeless tales, gentle jokes, and family traditions.
               Each story is crafted to be calm, kind, and a touch adventurous—perfect for winding down.
             </p>
           </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="rounded-2xl border bg-white p-6 text-slate-700"
-          >
-            <p>
-              “We mix classic values with a sprinkle of wonder—so little listeners feel brave,
-              safe, and ready for dreams.”
-            </p>
+          <motion.div initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.4 }}
+            className="rounded-2xl border bg-white p-6 text-slate-700">
+            <p>“We mix classic values with a sprinkle of wonder—so little listeners feel brave, safe, and ready for dreams.”</p>
           </motion.div>
         </div>
       </Section>
@@ -192,11 +139,11 @@ export default function PopPopStorytimeSite() {
       {/* FOOTER */}
       <footer className="py-10 text-center text-sm text-slate-600">
         <div className="flex items-center justify-center gap-2">
-          <Sparkles className="h-4 w-4" />
-          <span>© {new Date().getFullYear()} PopPop Storytime</span>
+          <Sparkles className="h-4 w-4" /><span>© {new Date().getFullYear()} PopPop Storytime</span>
         </div>
       </footer>
     </div>
   );
 }
+
 
