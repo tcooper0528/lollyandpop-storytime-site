@@ -19,11 +19,10 @@ function Section({
   );
 }
 
-/* ---------- Decorative: Stars background ---------- */
+/* ---------- Decorative: tiny starfield ---------- */
 function StarsBG() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10">
-      {/* three clusters of little stars */}
       <div className="absolute left-[8%] top-[18%] twinkle w-1 h-1 rounded-full bg-indigo-400/80 shadow-[0_0_8px_2px_rgba(129,140,248,.55)]" />
       <div className="absolute left-[22%] top-[28%] twinkle delay-1 w-1 h-1 rounded-full bg-amber-400/80 shadow-[0_0_8px_2px_rgba(251,191,36,.50)]" />
       <div className="absolute left-[16%] top-[40%] twinkle delay-2 w-[3px] h-[3px] rounded-full bg-pink-400/80 shadow-[0_0_8px_2px_rgba(244,114,182,.50)]" />
@@ -34,8 +33,8 @@ function StarsBG() {
   );
 }
 
-/* ---------- Tiny confetti generator (no deps) ---------- */
-function fireConfetti(durationMs = 1000, pieces = 100) {
+/* ---------- tiny confetti (kept for fun on submit) ---------- */
+function fireConfetti(durationMs = 1000, pieces = 80) {
   const colors = ["#4f46e5", "#f59e0b", "#ec4899", "#22c55e", "#06b6d4", "#f43f5e"];
   for (let i = 0; i < pieces; i++) {
     const el = document.createElement("div");
@@ -50,38 +49,27 @@ function fireConfetti(durationMs = 1000, pieces = 100) {
   }
 }
 
-/* ---------- Main page ---------- */
 export default function PopPopStorytimeSite() {
-  // parallax shimmer: move large gradient blob as user scrolls
+  // parallax shimmer blob
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
   const x = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
-  // intercept form submit to show confetti, then continue normal Netlify flow
+  // confetti + programmatic Netlify submit
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    // Netlify requires form-name when posting programmatically
     const fd = new FormData(form);
     fd.set("form-name", "storybot");
-
-    // party time
     fireConfetti(1200, 120);
-
-    // programmatic post to Netlify, then redirect to /thanks (pretty URL)
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(fd as any).toString(),
     })
-      .then(() => {
-        // a brief pause so confetti finishes
-        setTimeout(() => (window.location.href = "/thanks"), 900);
-      })
-      .catch(() => {
-        alert("Whoops! Storybot hit choppy waters—try again?");
-      });
+      .then(() => setTimeout(() => (window.location.href = "/thanks"), 900))
+      .catch(() => alert("Whoops! Storybot hit choppy waters—try again?"));
   }, []);
 
   return (
@@ -102,7 +90,8 @@ export default function PopPopStorytimeSite() {
             <span className="font-semibold">PopPop Storytime</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#adventure" className="hover:text-indigo-600">Adventure</a>
+            {/* CHANGED: Adventure now links to The Story Chest landing page */}
+            <a href="/stories" className="hover:text-indigo-600">Adventure</a>
             <a href="#storybot" className="hover:text-indigo-600">Storybot</a>
             <a href="#about" className="hover:text-indigo-600">About</a>
           </div>
@@ -151,7 +140,7 @@ export default function PopPopStorytimeSite() {
         </div>
       </Section>
 
-      {/* STORYBOT (visible form with confetti submit) */}
+      {/* STORYBOT (visible form) */}
       <Section id="storybot" className="py-12">
         <Card className="shadow-sm">
           <CardHeader>
@@ -174,7 +163,6 @@ export default function PopPopStorytimeSite() {
               onSubmit={handleSubmit}
               className="grid md:grid-cols-2 gap-6"
             >
-              {/* Netlify needs this when posting programmatically */}
               <input type="hidden" name="form-name" value="storybot" />
               <p className="hidden">
                 <label>Don’t fill this out: <input name="bot-field" /></label>
@@ -182,46 +170,19 @@ export default function PopPopStorytimeSite() {
 
               <div className="space-y-3">
                 <label className="block text-sm font-medium" htmlFor="explorerName">Explorer’s name</label>
-                <input
-                  id="explorerName"
-                  name="explorerName"
-                  required
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="e.g., Xena"
-                />
+                <input id="explorerName" name="explorerName" required className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Xena" />
 
                 <label className="block text-sm font-medium" htmlFor="sidekick">Sidekick</label>
-                <input
-                  id="sidekick"
-                  name="sidekick"
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="e.g., Jazzy the pup"
-                />
+                <input id="sidekick" name="sidekick" className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Jazzy the pup" />
 
                 <label className="block text-sm font-medium" htmlFor="destination">Magical destination</label>
-                <input
-                  id="destination"
-                  name="destination"
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="e.g., Starry Seas"
-                />
+                <input id="destination" name="destination" className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="e.g., Starry Seas" />
 
-                <label className="block text-sm font-medium" htmlFor="parentEmail">Parent email (optional)</label>
-                <input
-                  id="parentEmail"
-                  name="parentEmail"
-                  type="email"
-                  className="h-10 w-full rounded-lg border border-slate-300 px-3"
-                  placeholder="you@example.com"
-                />
+                <label className="block text sm font-medium" htmlFor="parentEmail">Parent email (optional)</label>
+                <input id="parentEmail" name="parentEmail" type="email" className="h-10 w-full rounded-lg border border-slate-300 px-3" placeholder="you@example.com" />
 
                 <label className="block text-sm font-medium" htmlFor="notes">Any cozy notes</label>
-                <textarea
-                  id="notes"
-                  name="notes"
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
-                  placeholder="Bedtime is 8pm; loves maps and stars."
-                />
+                <textarea id="notes" name="notes" className="w-full rounded-lg border border-slate-300 px-3 py-2" placeholder="Bedtime is 8pm; loves maps and stars." />
               </div>
 
               <div className="flex flex-col justify-between">
