@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Story Chest • PopPop Storytime</title>
+    <meta name="description" content="PopPop's Story Chest — a simple library of cozy adventures for little explorers." />
+    <style>
+      :root { --ink:#0f172a; --muted:#475569; --ring:#e2e8f0; --brand:#4f46e5; --bg:#fafafa; }
+      html,body{margin:0;padding:0;background:linear-gradient(180deg,#eef2ff 0%,#fff 45%,#fff7ed 100%);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;}
+      .wrap{max-width:1040px;margin:0 auto;padding:24px;}
+      .nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--ring);backdrop-filter:saturate(120%) blur(3px);}
+      .brand{display:flex;gap:8px;align-items:center;font-weight:600;}
+      .brand .spark{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 50% 40%, #818cf8, #fca5a5 70%, transparent 72%);}
+      .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:18px 0 42px;}
+      .card{background:#fff;border:1px solid var(--ring);border-radius:16px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,.05);}
+      .card h3{margin:0 0 6px 0;font-size:18px}
+      .card p{margin:6px 0 14px 0;color:var(--muted);font-size:14px;min-height:40px}
+      .btn{display:inline-block;background:var(--brand);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none}
+      .btn:hover{filter:brightness(1.05)}
+      .crumbs{font-size:14px;color:var(--muted);margin:16px 0}
+      .footer{padding:30px 0;border-top:1px solid var(--ring);text-align:center;color:var(--muted);font-size:14px}
+      .back{color:var(--brand);text-decoration:none}
+      .back:hover{text-decoration:underline}
+      @media (max-width:640px){ .wrap{padding:16px} }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand"><div class="spark"></div> <span>PopPop Storytime</span></div>
+        <a class="back" href="/">← Back to Home</a>
+      </div>
+
+      <h1 style="margin:18px 0 8px 0;">The Story Chest</h1>
+      <div class="crumbs">A simple library of PopPop’s cozy adventures. Click a title to read.</div>
+
+      <div class="grid">
+        <!-- CARD EXAMPLE 1 -->
+        <div class="card">
+          <h3>Starry Seas (Bedtime Voyage)</h3>
+          <p>Sail beyond the lighthouse with Jazzy the pup and spot constellations that look like cookies.</p>
+          <a class="btn" href="https://docs.google.com/presentation/d/YOUR_SLIDES_ID_1/preview?usp=sharing" target="_blank" rel="noopener">Read in Slides</a>
+        </div>
+
+        <!-- CARD EXAMPLE 2 -->
+        <div class="card">
+          <h3>The Maple Tree’s Secret</h3>
+          <p>A golden leaf map leads our explorer to a whispering grove and a very polite raccoon.</p>
+          <a class="btn" href="https://docs.google.com/presentation/d/YOUR_SLIDES_ID_2/preview?usp=sharing" target="_blank" rel="noopener">Read in Slides</a>
+        </div>
+
+        <!-- CARD EXAMPLE 3 -->
+        <div class="card">
+          <h3>Lanterns of the Lake</h3>
+          <p>Paper lanterns, quiet paddles, and a surprise chorus of frogs with perfect manners.</p>
+          <a class="btn" href="https://docs.google.com/presentation/d/YOUR_SLIDES_ID_3/preview?usp=sharing" target="_blank" rel="noopener">Read in Slides</a>
+        </div>
+      </div>
+
+      <div class="footer">© <span id="y"></span> PopPop Storytime • Cozy tales, classic values.</div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  </body>
+</html>
